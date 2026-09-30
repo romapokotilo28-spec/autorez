@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Кадр — конвертация фото и видео</title>
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <div class="brand">
+        <p class="eyebrow"><i aria-hidden="true"></i>Лаборатория форматов</p>
+        <h1>Кадр</h1>
+      </div>
+      <p class="lede">
+        Фото и видео в JPG, PNG, WebP, MP4, WebM или GIF.
+        Всё считается в браузере и никуда не отправляется.
+      </p>
+    </header>
+
+    <section class="sheet" id="sheet">
+      <p class="alert" id="alert" hidden role="alert"></p>
+
+      <div class="drop" id="drop">
+        <div class="marks" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="drop-copy">
+          <p class="drop-kicker">Фото и видео</p>
+          <h2>Перетащите файлы сюда</h2>
+          <p class="drop-note">Можно сразу несколько. JPG, PNG, WebP, GIF, MP4, MOV, WebM, MKV.</p>
+          <button class="btn btn-dark" type="button" id="pick">Выбрать файлы</button>
+        </div>
+      </div>
+
+      <div class="work" id="work" hidden>
+        <div class="rail-row">
+          <div class="rail" id="rail" role="list"></div>
+          <div class="rail-actions">
+            <button class="text-btn" type="button" id="add-more">Добавить</button>
+            <button class="text-btn" type="button" id="clear-all">Очистить</button>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="preview" id="preview"></div>
+          <div class="view-switch" id="view-switch" hidden>
+            <button type="button" data-view="source" aria-pressed="true">Исходник</button>
+            <button type="button" data-view="result" aria-pressed="false">Результат</button>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div>
+            <p class="file-name" id="file-name"></p>
+            <p class="file-meta" id="file-meta"></p>
+          </div>
+
+          <fieldset class="formats" id="image-formats">
+            <legend>Формат фото</legend>
+            <div class="choices">
+              <button type="button" data-image="jpg" aria-pressed="false">JPG</button>
+              <button type="button" data-image="png" aria-pressed="false">PNG</button>
+              <button type="button" data-image="webp" aria-pressed="true">WebP</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="formats" id="video-formats">
+            <legend>Формат видео</legend>
+            <div class="choices">
+              <button type="button" data-video="mp4" aria-pressed="true">MP4</button>
+              <button type="button" data-video="webm" aria-pressed="false">WebM</button>
+              <button type="button" data-video="gif" aria-pressed="false">GIF</button>
+            </div>
+          </fieldset>
+
+          <label class="slider" id="quality-field">
+            <span class="slider-label">
+              <span>Качество</span>
+              <span id="quality-value">85%</span>
+            </span>
+            <input id="quality" type="range" min="40" max="100" value="85" />
+          </label>
+
+          <label class="select">
+            <span>Длинная сторона</span>
+            <select id="max-edge">
+              <option value="0">Как в исходнике</option>
+              <option value="3840">3840 px</option>
+              <option value="1920">1920 px</option>
+              <option value="1280">1280 px</option>
+              <option value="720">720 px</option>
+            </select>
+          </label>
+
+          <p class="hint" id="hint"></p>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress-track">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <span id="progress-label">Готовим…</span>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-red" type="button" id="convert">Конвертировать</button>
+            <button class="btn btn-line" type="button" id="convert-all">Все файлы</button>
+          </div>
+
+          <div class="result" id="result" hidden>
+            <p id="result-size"></p>
+            <button class="btn btn-dark" type="button" id="download">Скачать</button>
+          </div>
+
+          <button class="text-btn danger" type="button" id="remove">Убрать этот файл</button>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <input id="file" type="file" accept="image/*,video/*,.mkv,.avi,.mov,.m4v,.heic,.webp,.gif" multiple hidden />
+  <script src="app.js"></script>
+</body>
+</html>
